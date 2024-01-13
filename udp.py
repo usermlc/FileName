@@ -7,7 +7,7 @@ from hikka.tools import edit
 class UdpFloodModule:
     name = "UdpFlood"
     description = "Модуль для отправки UDP пакетов"
-    author = "@your_username"
+    author = "@openaicodex"
 
     @command(description="Отправляет UDP пакеты", usage=".udp ip port sec")
     async def udp(self, message, args):
