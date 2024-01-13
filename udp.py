@@ -1,17 +1,19 @@
-from hikka.decorators import command
 import socket
 import asyncio
+from hikka.tools import edit
 
-# Импортируйте необходимые библиотеки и установите свой модуль
 class UdpFloodModule:
     name = "UdpFlood"
     description = "Модуль для отправки UDP пакетов"
     author = "@openaicodex"
 
-    @command(description="Отправляет UDP пакеты", usage=".udp ip port sec")
-    async def udp(self, message, args):
+    def __init__(self):
+        self.commands = {"udp": self.udp_command}
+
+    async def udp_command(self, message, args):
         if len(args) != 3:
-            return await edit(message, "Использование: .udp ip port sec")
+            await edit(message, "Использование: .udp ip port sec")
+            return
 
         ip, port, sec = args
         port = int(port)
@@ -33,7 +35,4 @@ class UdpFloodModule:
                 except Exception as e:
                     print(f"Ошибка отправки: {e}")
 
-        return True
-
-# Создайте экземпляр вашего модуля
 module = UdpFloodModule()
